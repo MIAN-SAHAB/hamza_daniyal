@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Valturin';
+  src: url('/fonts/Valturin-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Bellota';
+  src: url('/fonts/Bellota-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bellota Text';
+  src: url('/fonts/BellotaText-Regular.ttf') format('truetype');
+}
+
+@theme {
+  --color-cream: #D4C8B8;
+  --color-cream-light: #D2C4B2;
+  --color-offwhite: #F5F0EB;
+  --color-gray: #7E7B75;
+  --color-dark: #181411;
+  --color-dark-alt: #191411;
+  --color-charcoal: #474747;
+  --color-light-gray: #EBEBEB;
+  --color-green: #1F4045;
+  --color-green-light: #7F9492;
+
+  --font-valturin: "Valturin-Regular","Playfair Display", "Georgia", serif;
+  --font-valturin-italic: "Valturin-Italic","Playfair Display", "Georgia", serif;
+  --font-bellota: "Bellota", serif;
+  --font-bellota-text: "Bellota Text", serif;
+  --font-archivo: "Archivo", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-arsenal: "Arsenal SC", sans-serif;
+}
+
+:root {
+  --font-valturin: 'Valturin', 'Segoe UI', Roboto, sans-serif;
+  --font-bellota: 'Bellota', 'Segoe UI', Roboto, sans-serif;
+  --font-bellota-text: 'Bellota Text', 'Segoe UI', Roboto, sans-serif;
+
+}
+
+body {
+  margin: 0;
+}
