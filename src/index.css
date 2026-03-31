@@ -36,6 +36,17 @@
   --font-arsenal: "Arsenal SC", sans-serif;
 }
 
+@keyframes bounceLetter {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-20px); }
+}
+
+/* Class to apply animation */
+.bounce-letter {
+  display: inline-block;
+  animation: bounceLetter 1s infinite ease-in-out;
+}
+
 :root {
   --font-valturin: 'Valturin', 'Segoe UI', Roboto, sans-serif;
   --font-bellota: 'Bellota', 'Segoe UI', Roboto, sans-serif;
@@ -45,4 +56,8 @@
 
 body {
   margin: 0;
+}
+
+.page-main{
+  min-height: 100dvh;
 }

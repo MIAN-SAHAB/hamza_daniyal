@@ -13,7 +13,7 @@ export default function Header() {
         </div>
         <div>
             <a href="/" className="">
-                <img src="/images/hamza-logo-new.png" className="w-[100px] h-[100px]" alt="Hamza Daniyal" />
+                <img src="/images/hamza-logo-new.png" className="w-[70px] h-[70px]" alt="Hamza Daniyal" />
             </a>
         </div>
         <div className="flex items-center justify-start gap-10">
