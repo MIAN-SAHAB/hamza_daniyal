@@ -16,17 +16,20 @@ export default function Footer() {
                   Call Us Now →
                 </p>
                 <p className="font-bellota-text text-[18px] leading-[1.4] text-offwhite">
-                  <a href="tel:+1-773-433-0042"> +1 (773) 433-0042 </a>
+                  <a href="tel:+923332303315" className="hover:text-cream transition-colors"> +92 (333) 230-3315 </a>
                 </p>
-                <p className="font-manrope text-[18px] leading-[1.4] text-offwhite mt-14">
+                <p className="font-bellota-text text-[18px] leading-[1.4] text-offwhite mt-14">
                   Send Email →{" "}
+                </p>
+                <p className="font-bellota-text text-[18px] leading-[1.4] text-offwhite">
                   <a
-                    href="mailto:paul@thresholddesignlab.com"
+                    href="mailto:contact@hamzadaniyal.com"
                     className="hover:text-cream transition-colors"
                   >
-                    paul@thresholddesignlab.com
+                    contact@hamzadaniyal.com
                   </a>
                 </p>
+                
               </div>
 
               <div className="flex gap-24">

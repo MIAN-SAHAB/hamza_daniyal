@@ -61,3 +61,24 @@ body {
 .page-main{
   min-height: 100dvh;
 }
+
+/* marquee animation */
+.marquee {
+  width: max-content;
+  animation: scrollMarquee 20s linear infinite;
+}
+
+/* smooth infinite loop */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* pause on hover */
+.marquee:hover {
+  animation-play-state: paused;
+}
