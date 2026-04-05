@@ -73,13 +73,27 @@ export default function Footer() {
                 </nav>
 
                 <nav className="flex flex-col gap-1 mt-2.75">
-                  {["Facebook", "Instagram", "YouTube", "Pinterest"].map((item) => (
+                  {[
+                    {
+                      title: "Facebook",
+                      url: 'https://www.facebook.com/hamza.daniyal.455'
+                    }, 
+                    {
+                      title: "Instagram",
+                      url: "https://www.instagram.com/mian__sahab/"
+                    }, 
+                    {
+                      title: "LinkedIn",
+                      url: "https://www.linkedin.com/in/hamza-daniyal/"
+                    }
+                    
+                  ].map((item) => (
                     <a
-                      key={item}
-                      href="#"
+                      key={item.title}
+                      href={item.url}
                       className="font-bellota-text text-[18px] leading-[1.4] text-offwhite hover:text-cream transition-colors"
                     >
-                      {item}
+                      {item.title}
                     </a>
                   ))}
                 </nav>

@@ -15,8 +15,8 @@ export default function Header() {
             })
         },[])
   return (
-    <header ref={HeaderRef} className="absolute top-0 left-0 w-full z-10 flex items-center justify-between px-13.5 py-2">
-        <div className="flex items-center justify-start gap-10">
+    <header ref={HeaderRef} className="absolute top-0 left-0 w-full z-10 flex flex-row items-center justify-between px-13.5 py-2">
+        <div className="flex items-center justify-start gap-10 w-1/3">
             <a href="/projects" className="font-bellota text-[20px] text-green font-medium leading-[1.09] hover:text-green-light transition-colors">
                 Projects
             </a>
@@ -24,12 +24,12 @@ export default function Header() {
                 Services
             </a>
         </div>
-        <div>
+        <div className="w-1/3 flex items-center justify-center">
             <a href="/" className="">
                 <img src="/images/hamza-logo-new.png" className="w-[70px] h-[70px]" alt="Hamza Daniyal" />
             </a>
         </div>
-        <div className="flex items-center justify-start gap-10">
+        <div className="flex items-center justify-end gap-10 w-1/3">
             <a href="/about" className="font-bellota text-[20px] text-green font-medium leading-[1.09] hover:text-green-light transition-colors">
                 About
             </a>

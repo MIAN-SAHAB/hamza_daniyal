@@ -16,21 +16,24 @@ export default function Home() {
     const [services, setServices] = useState(null);
 
     useEffect(() => {
-        fetch(`${API}wp/v2/pages/6?acf_format=standard`)
+        if(!data){
+            fetch(`${API}wp/v2/pages/6?acf_format=standard`)
             .then(res => res.json())
             .then(res => {
-                // console.log(res);
                 setData(res);
             })
             .catch(err => console.error(err));
-
-        fetch(`${API}services/service?_embed&acf_format=standard`)
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                setServices(res);
-            })
-            .catch(err => console.error(err));
+        }
+        
+        if(!services){
+            fetch(`${API}wp/v2/service?_embed&acf_format=standard`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    setServices(res);
+                })
+                .catch(err => console.error(err));
+        }
     }, []);
 
     useGSAP(() => {
@@ -55,7 +58,7 @@ export default function Home() {
       </div>
     ) : (
         <>
-            <div className="relative w-full min-h-screen lg:h-screen bg-hero bg-cover bg-center bg-[#EDE5D3] flex flex-col items-center justify-end">
+            <div className="relative w-full min-h-screen lg:h-screen bg-hero bg-cover bg-center bg-[#EDE5D3] flex flex-col items-center justify-end overflow-hidden">
                 <div className="w-full h-full flex flex-row px-13.5 gap-10">
                     <div className="flex flex-col justify-center gap-4 w-1/3">
                         <p className="font-bellota-text text-[24px] leading-[1.4] text-black">
@@ -96,40 +99,60 @@ export default function Home() {
                         <p className="font-bellota-text text-[24px] leading-[1.4] text-black">
                             {data.acf.banner_text_right_2}
                         </p>
+                        <div className="w-full flex flex-row gap-10 justify-start items-center">
+                            <button className="px-4 py-2 text-[20px] font-normal font-bellota bg-green text-cream rounded-full border border-green cursor-pointer hover:bg-[#EDE5D3] hover:text-green transition-colors">
+                                Hire Me Now
+                            </button>
+                            <button className="px-4 py-2 text-[20px] font-normal font-bellota bg-green text-cream rounded-full border border-green cursor-pointer hover:bg-[#EDE5D3] hover:text-green transition-colors">
+                                Download CV
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             <ServicesMarquee services={services} />
-            <div className="relative w-full min-h-screen lg:h-screen bg-hero bg-cover bg-center bg-[#EDE5D3] flex flex-col items-center justify-center">
+            <div className="relative w-full bg-hero bg-cover bg-center bg-[#EDE5D3] flex flex-col items-center justify-center gap-5 py-25">
+                <div className="w-full flex flex-col gap-10">
+                    <h2 className="font-valturin font-bold text-center text-[80px] leading-[1.1] text-black transition-clip duration-1000 ease-out">
+                        {data.acf.services_heading}
+                    </h2>
+                    <h3 className="font-bellota font-bold text-center text-[50px] leading-[1.1] text-green transition-clip duration-1000 ease-out">
+                        {data.acf.services_sub_heading}
+                    </h3>
+                </div>
                 <div className="w-full flex flex-row justify-center items-center px-13.5 gap-10">
-                    {services.map(service => {
+                    {services?.map(service => {
                         const image = service._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
                         return (
                             <div
                                 key={service.id}
-                                className="group bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:scale-[1.02]"
+                                className="group flex flex-row gap-5 bg-white rounded-2xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-2xl hover:-translate-y-3 hover:scale-[1.02]"
                             >
                             
                                 {/* Image */}
-                                <div className="overflow-hidden">
+                                <div className="overflow-hidden w-1/2">
                                     <img
-                                        src={image}
+                                        src={service.acf.additional_image.url}
                                         alt={service.title.rendered}
-                                        className="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-6 flex flex-col gap-4">
+                                <div className="p-6 flex flex-col gap-4 w-1/2">
                                     <h2
-                                    className="text-2xl font-bold text-gray-800"
+                                    className="text-2xl font-bold text-gray-800 font-valturin"
                                     dangerouslySetInnerHTML={{
                                         __html: service.title.rendered,
                                     }}
                                     />
 
-                                    <p
-                                    className="text-gray-600 text-sm leading-relaxed"
+                                    <h3 className="text-xl font-bold font-bellota">
+                                        {service.acf.sub_title}
+                                    </h3>
+
+                                    <span
+                                    className="text-gray-600 text-md font-light leading-relaxed font-bellota-text"
                                     dangerouslySetInnerHTML={{
                                         __html: service.excerpt.rendered,
                                     }}
@@ -140,7 +163,7 @@ export default function Home() {
                                     href={service.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="mt-2 inline-block text-blue-500 font-semibold transition-all duration-300 group-hover:translate-x-2"
+                                    className="font-bellota-text mt-2 inline-block text-blue-500 font-semibold transition-all duration-300 group-hover:translate-x-2"
                                     >
                                         Learn More →
                                     </a>
