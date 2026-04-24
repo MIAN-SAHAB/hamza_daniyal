@@ -1,27 +1,29 @@
-import { useState } from 'react'
-import './App.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from './pages/components/Header';
-import Footer from './pages/components/Footer';
-import Home from './pages/Home';
-import SiteSettings from "./SiteSettings";
+import React from 'react';
+import './index.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Hero from './sections/Hero';
+import About from './sections/About';
+import Skills from './sections/Skills';
+import Experience from './sections/Experience';
+import Projects from './sections/Projects';
+import Contact from './sections/Contact';
 
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-        <SiteSettings />
-        <Header />
-        <main className='page-main'>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </main>
-        <Footer />
-      </BrowserRouter>
-    </>
-  )
+    <div className="bg-dark text-offwhite font-bellota min-h-screen selection:bg-green selection:text-white overflow-hidden">
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -27,39 +27,40 @@
   --color-green: #1F4045;
   --color-green-light: #7F9492;
 
-  --font-valturin: "Valturin-Regular","Playfair Display", "Georgia", serif;
-  --font-valturin-italic: "Valturin-Italic","Playfair Display", "Georgia", serif;
-  --font-bellota: "Bellota", serif;
-  --font-bellota-text: "Bellota Text", serif;
-  --font-archivo: "Archivo", sans-serif;
-  --font-manrope: "Manrope", sans-serif;
-  --font-arsenal: "Arsenal SC", sans-serif;
-}
-
-@keyframes bounceLetter {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-20px); }
-}
-
-/* Class to apply animation */
-.bounce-letter {
-  display: inline-block;
-  animation: bounceLetter 1s infinite ease-in-out;
-}
-
-:root {
-  --font-valturin: 'Valturin', 'Segoe UI', Roboto, sans-serif;
-  --font-bellota: 'Bellota', 'Segoe UI', Roboto, sans-serif;
-  --font-bellota-text: 'Bellota Text', 'Segoe UI', Roboto, sans-serif;
-
+  --font-valturin: "Valturin", "Playfair Display", "Georgia", serif;
+  --font-bellota: "Bellota", "Segoe UI", Roboto, sans-serif;
+  --font-bellota-text: "Bellota Text", "Segoe UI", Roboto, sans-serif;
 }
 
 body {
   margin: 0;
+  background-color: var(--color-dark);
+  color: var(--color-offwhite);
+  font-family: var(--font-bellota);
+  scroll-behavior: smooth;
 }
 
-.page-main{
-  min-height: 100dvh;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-valturin);
+}
+
+.font-valturin {
+  font-family: var(--font-valturin);
+}
+
+.font-bellota {
+  font-family: var(--font-bellota);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* marquee animation */
@@ -68,17 +69,11 @@ body {
   animation: scrollMarquee 20s linear infinite;
 }
 
-/* smooth infinite loop */
 @keyframes scrollMarquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-/* pause on hover */
 .marquee:hover {
   animation-play-state: paused;
 }
