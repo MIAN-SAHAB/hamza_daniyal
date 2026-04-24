@@ -26,10 +26,10 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-dark/90 backdrop-blur-md py-4 shadow-lg shadow-black/20' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-glass backdrop-blur-md border-b border-glass-border py-4 shadow-[0_4px_30px_rgba(0,0,0,0.05)]' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-valturin text-offwhite hover:text-cream transition-colors duration-300 flex items-center gap-3">
-          <img src="/images/hamza-logo-new.png" alt="Hamza Daniyal Logo" className="w-8 h-8 object-contain" />
+        <a href="#home" className="text-2xl font-valturin text-text-main hover:text-primary transition-colors duration-300 flex items-center gap-3">
+          <img src="/images/hamza-logo-new.png" alt="Hamza Daniyal Logo" className="w-8 h-8 object-contain filter invert" />
           <span>Hamza Daniyal</span>
         </a>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-gray hover:text-cream transition-colors duration-300 text-sm tracking-wider uppercase font-bellota"
+              className="text-text-muted hover:text-primary font-bold transition-colors duration-300 text-sm tracking-wider uppercase font-bellota"
             >
               {link.name}
             </a>
@@ -48,7 +48,7 @@ const Navbar = () => {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-offwhite focus:outline-none"
+          className="md:hidden text-text-main focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -59,13 +59,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-dark-alt border-t border-charcoal py-4 px-6 flex flex-col space-y-4 shadow-xl">
+        <div className="md:hidden absolute top-full left-0 w-full bg-glass backdrop-blur-xl border-t border-glass-border py-4 px-6 flex flex-col space-y-4 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="text-offwhite hover:text-cream transition-colors duration-300 text-lg font-bellota"
+              className="text-text-main hover:text-primary font-bold transition-colors duration-300 text-lg font-bellota"
             >
               {link.name}
             </a>
