@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
   const sectionRef = useRef(null);
-  const lineRef = useRef(null);
 
   const experiences = [
     {
@@ -31,30 +30,14 @@ const Experience = () => {
   ];
 
   useGSAP(() => {
-    // Animate the vertical line drawing down
-    gsap.fromTo(lineRef.current,
-      { height: 0 },
-      {
-        height: '100%',
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-          end: 'bottom 80%',
-          scrub: true,
-        }
-      }
-    );
-
-    // Animate the items fading in
     gsap.fromTo('.exp-item',
-      { x: 50, opacity: 0 },
+      { y: 50, opacity: 0 },
       {
-        x: 0,
+        y: 0,
         opacity: 1,
         duration: 0.8,
-        stagger: 0.3,
-        ease: 'power2.out',
+        stagger: 0.2,
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 70%',
@@ -65,38 +48,32 @@ const Experience = () => {
   }, { scope: sectionRef });
 
   return (
-    <section id="experience" className="py-24 md:py-32 bg-white/30 backdrop-blur-sm relative" ref={sectionRef}>
-      <div className="container mx-auto px-6 md:px-12 max-w-4xl">
-        <div className="flex items-center gap-4 mb-16">
-          <div className="h-[2px] w-12 bg-gradient-to-r from-primary to-accent"></div>
-          <h2 className="text-4xl md:text-5xl font-valturin text-text-main">Experience</h2>
+    <section id="experience" className="py-32 bg-bg-alt relative border-t border-border-main" ref={sectionRef}>
+      <div className="container mx-auto px-6 md:px-12 max-w-6xl">
+        <div className="mb-20">
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Experience</h2>
         </div>
 
-        <div className="relative pl-8 md:pl-0">
-          {/* Timeline Line */}
-          <div className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-[2px] bg-primary/10">
-            <div ref={lineRef} className="w-full bg-gradient-to-b from-primary via-secondary to-accent shadow-[0_0_15px_rgba(139,92,246,0.5)] origin-top"></div>
-          </div>
+        <div className="space-y-6">
+          {experiences.map((exp, index) => (
+            <div key={index} className="exp-item group relative flex flex-col md:flex-row md:items-center justify-between p-8 md:p-10 border border-border-main bg-bg-main rounded-3xl hover:border-primary transition-colors duration-500 overflow-hidden">
 
-          <div className="space-y-16">
-            {experiences.map((exp, index) => (
-              <div key={index} className={`exp-item relative flex flex-col md:flex-row items-start ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+              <div className="absolute inset-0 bg-primary/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
 
-                {/* Timeline Dot */}
-                <div className="absolute left-[-33px] md:left-1/2 md:-ml-[6px] mt-1.5 w-4 h-4 rounded-full bg-white border-4 border-secondary z-10 shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
-
-                <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12 text-left md:text-right'}`}>
-                  <span className="text-secondary font-bold font-bellota text-sm tracking-widest bg-secondary/10 px-3 py-1 rounded-full inline-block mb-2">{exp.year}</span>
-                  <h3 className="text-2xl font-valturin text-text-main mt-2">{exp.role}</h3>
-                  <h4 className="text-lg text-primary font-bellota mb-4 font-bold">{exp.company}</h4>
-                  <p className="text-text-muted font-bellota leading-relaxed text-sm md:text-base bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-glass-border shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    {exp.description}
-                  </p>
-                </div>
-                <div className="hidden md:block md:w-1/2"></div>
+              <div className="relative z-10 md:w-1/3 mb-6 md:mb-0">
+                <span className="text-primary font-bold text-sm tracking-widest uppercase mb-2 block">{exp.year}</span>
+                <h3 className="text-3xl font-bold text-white tracking-tight">{exp.role}</h3>
+                <h4 className="text-xl text-text-muted mt-1">{exp.company}</h4>
               </div>
-            ))}
-          </div>
+
+              <div className="relative z-10 md:w-2/3 md:pl-12">
+                <p className="text-text-muted font-light leading-relaxed text-lg">
+                  {exp.description}
+                </p>
+              </div>
+
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -35,8 +35,8 @@ const Projects = () => {
       {
         y: 0,
         opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
+        duration: 1,
+        stagger: 0.3,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -48,41 +48,42 @@ const Projects = () => {
   }, { scope: sectionRef });
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative bg-glass backdrop-blur-md border-y border-glass-border shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]" ref={sectionRef}>
+    <section id="projects" className="py-32 bg-bg-main relative" ref={sectionRef}>
       <div className="container mx-auto px-6 md:px-12">
-        <div className="flex items-center gap-4 mb-16 justify-center">
-          <div className="h-[2px] w-12 bg-gradient-to-r from-primary to-accent hidden md:block"></div>
-          <h2 className="text-4xl md:text-5xl font-valturin text-text-main text-center">Selected Works</h2>
-          <div className="h-[2px] w-12 bg-gradient-to-r from-accent to-secondary hidden md:block"></div>
+        <div className="mb-20">
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Selected Work</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex flex-col gap-12">
           {projects.map((project, idx) => (
-            <div key={idx} className="project-card group relative rounded-2xl overflow-hidden bg-white/70 backdrop-blur-lg border border-glass-border hover:border-primary/50 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+            <div key={idx} className="project-card group relative w-full h-[60vh] md:h-[80vh] rounded-3xl overflow-hidden cursor-pointer border border-border-main">
 
-              {/* Image Container with Overlay */}
-              <div className="relative h-64 overflow-hidden">
-                <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10 mix-blend-overlay"></div>
+              {/* Image Background */}
+              <div className="absolute inset-0">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover grayscale transition-transform duration-1000 group-hover:scale-105 group-hover:grayscale-0"
                 />
               </div>
 
-              {/* Content */}
-              <div className="p-8 relative z-20 bg-gradient-to-t from-white via-white/95 to-transparent -mt-12 pt-16">
-                <h3 className="text-2xl font-valturin text-text-main mb-3 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
-                <p className="text-text-muted text-sm font-bellota mb-6 line-clamp-3">
-                  {project.description}
-                </p>
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500 group-hover:opacity-80"></div>
 
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map(t => (
-                    <span key={t} className="text-xs font-bold font-bellota px-3 py-1 bg-primary/10 rounded-full border border-primary/20 text-primary">
-                      {t}
-                    </span>
-                  ))}
+              {/* Content Overlay */}
+              <div className="absolute inset-0 p-8 md:p-16 flex flex-col justify-end z-10">
+                <div className="max-w-3xl transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {project.tech.map(t => (
+                      <span key={t} className="px-4 py-1.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white text-sm font-medium tracking-wide">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-none">{project.title}</h3>
+                  <p className="text-lg md:text-xl text-gray-300 font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed max-w-2xl">
+                    {project.description}
+                  </p>
                 </div>
               </div>
 
