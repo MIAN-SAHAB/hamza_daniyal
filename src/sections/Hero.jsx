@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { usePopup } from '../context/PopupContext';
 
 const Hero = () => {
+  const { openPopup } = usePopup();
   const heroRef = useRef(null);
   const textRef = useRef(null);
   const imageRef = useRef(null);
@@ -58,9 +60,12 @@ const Hero = () => {
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </a>
-              <a href="#contact" className="px-8 py-4 bg-white/5 border border-border-main text-white hover:bg-white/10 transition-colors duration-300 rounded-full font-medium tracking-wide text-lg">
+              <button
+                onClick={openPopup}
+                className="cursor-pointer px-8 py-4 bg-white/5 border border-border-main text-white hover:bg-white/10 transition-colors duration-300 rounded-full font-medium tracking-wide text-lg"
+              >
                 Contact Me
-              </a>
+              </button>
             </div>
           </div>
 
