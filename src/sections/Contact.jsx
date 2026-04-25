@@ -10,15 +10,15 @@ const Contact = () => {
 
   useGSAP(() => {
     gsap.fromTo(sectionRef.current.children,
-      { y: 50, opacity: 0 },
+      { y: 100, opacity: 0 },
       {
         y: 0,
         opacity: 1,
         duration: 1,
-        ease: 'power2.out',
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 80%',
+          start: 'top 75%',
           toggleActions: "play reverse play reverse",
         }
       }
@@ -26,32 +26,34 @@ const Contact = () => {
   }, { scope: sectionRef });
 
   return (
-    <section id="contact" className="py-24 md:py-40 relative overflow-hidden" ref={sectionRef}>
+    <section id="contact" className="py-32 bg-primary text-white relative border-t border-border-main" ref={sectionRef}>
+      <div className="container mx-auto px-6 md:px-12 text-center">
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-        <div className="bg-white/50 backdrop-blur-xl border border-glass-border p-12 md:p-20 rounded-3xl max-w-4xl mx-auto shadow-2xl">
-          <h2 className="text-sm font-bold font-bellota text-secondary tracking-[0.3em] uppercase mb-4">What's Next?</h2>
-          <h3 className="text-5xl md:text-7xl font-valturin text-text-main mb-8">Get In Touch</h3>
+        <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter leading-none mb-10 text-white drop-shadow-md">
+          Let's Work <br/> Together.
+        </h2>
 
-          <p className="max-w-xl mx-auto text-text-muted font-bellota text-lg mb-12">
-            Whether you have a question, a project proposal, or just want to say hi,
-            I'll try my best to get back to you! Currently open for new opportunities.
-          </p>
+        <p className="text-xl md:text-3xl font-light mb-16 text-white/90 max-w-2xl mx-auto">
+          Currently open for new opportunities. Whether you have a project or just want to say hi, I'll get back to you.
+        </p>
 
-          <a
-            href="mailto:hamzadaniyal455@yahoo.com"
-            className="inline-block px-10 py-5 bg-gradient-to-r from-primary to-secondary text-white hover:scale-105 hover:shadow-[0_10px_25px_rgba(59,130,246,0.5)] transition-all duration-300 rounded-full font-bellota font-bold text-lg tracking-wider"
-          >
-            Say Hello
+        <a
+          href="mailto:hamzadaniyal455@yahoo.com"
+          className="inline-flex items-center gap-4 px-12 py-6 bg-white text-black hover:bg-black hover:text-white transition-all duration-300 rounded-full font-bold text-xl tracking-wide shadow-xl hover:shadow-2xl hover:-translate-y-1 mb-8"
+        >
+          Send an Email
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </a>
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-2 text-white/80">
+          <p className="text-lg">Or call directly at</p>
+          <a href="tel:+923332303315" className="text-3xl text-white hover:text-black font-bold transition-colors duration-300">
+            +92 (333) 230-3315
           </a>
-
-          <div className="mt-16 flex flex-col items-center justify-center gap-2 font-bellota text-text-muted">
-            <p>Or call directly at</p>
-            <a href="tel:+923332303315" className="text-2xl text-text-main hover:text-primary font-bold transition-colors duration-300">
-              +92 (333) 230-3315
-            </a>
-          </div>
         </div>
+
       </div>
     </section>
   );

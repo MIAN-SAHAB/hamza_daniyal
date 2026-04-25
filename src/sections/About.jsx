@@ -7,63 +7,78 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
   const textRef = useRef(null);
+  const statsRef = useRef(null);
 
   useGSAP(() => {
-    gsap.fromTo(textRef.current.children,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-          toggleActions: "play reverse play reverse",
-        }
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 75%',
+        toggleActions: "play reverse play reverse",
       }
+    });
+
+    tl.fromTo(titleRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+    )
+    .fromTo(textRef.current,
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+      "-=0.6"
+    )
+    .fromTo(statsRef.current.children,
+      { scale: 0.9, opacity: 0, y: 20 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'back.out(1.5)' },
+      "-=0.6"
     );
   }, { scope: sectionRef });
 
-  return (
-    <section id="about" className="py-24 md:py-32 bg-glass backdrop-blur-md relative border-y border-glass-border shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]" ref={sectionRef}>
-      <div className="container mx-auto px-6 md:px-12 max-w-5xl">
-        <div ref={textRef}>
-          <div className="flex items-center gap-4 mb-12">
-            <div className="h-[2px] w-12 bg-gradient-to-r from-primary to-accent"></div>
-            <h2 className="text-4xl md:text-5xl font-valturin text-text-main">About Me</h2>
-          </div>
+  const stats = [
+    { number: "07+", label: "Years Experience" },
+    { number: "50+", label: "Projects Completed" },
+    { number: "30+", label: "Happy Clients" },
+    { number: "10+", label: "Tech Stacks" }
+  ];
 
-          <div className="grid md:grid-cols-2 gap-12 text-lg text-text-muted font-bellota leading-relaxed">
-            <div>
-              <p className="mb-6">
-                With over <span className="text-primary font-bold">7 years of experience</span> in full-stack development,
-                I have honed my skills in building robust, scalable, and visually compelling web applications.
-                My journey has been driven by a passion for creating seamless user experiences and solving complex architectural challenges.
+  return (
+    <section id="about" className="py-32 bg-bg-main relative border-t border-border-main" ref={sectionRef}>
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+
+          <div>
+            <h2 ref={titleRef} className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-none">
+              Engineering <br/>
+              <span className="text-primary">Digital</span> Futures.
+            </h2>
+
+            <div ref={textRef} className="space-y-6 text-xl text-text-muted font-light leading-relaxed">
+              <p>
+                I am a passionate Full Stack Developer with over 7 years of experience crafting high-performance, scalable web applications. My expertise spans across robust backend architectures and highly interactive, polished frontend interfaces.
               </p>
               <p>
-                I thrive in environments that demand both creative problem-solving and technical excellence.
-                Whether it's architecting a backend database or crafting interactive frontend animations,
-                I approach every project with a modern mindset and an eye for sleek, eye-catching design.
+                From complex CRM systems in Laravel to blazing-fast modern web applications in React and Next.js, I bridge the gap between design and deeply complex logic to deliver products that are both technically profound and aesthetically striking.
               </p>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-lg p-8 rounded-2xl border border-glass-border shadow-xl hover:shadow-2xl transition-shadow duration-500">
-              <h3 className="text-2xl text-text-main font-valturin mb-4">My Core Stack</h3>
-              <p className="mb-6 text-sm">
-                I specialize in bridging the gap between elegant interfaces and powerful backend systems using modern technologies.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['PHP', 'Laravel', 'SQL', 'MySQL', 'WordPress', 'Yii', 'React', 'TypeScript', 'Next.js'].map(tech => (
-                  <span key={tech} className="px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-full text-sm font-bold text-primary shadow-sm hover:scale-105 transition-transform duration-300">
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
+
+          <div className="flex items-center">
+            <div ref={statsRef} className="grid grid-cols-2 gap-6 w-full">
+              {stats.map((stat, idx) => (
+                <div key={idx} className="p-8 border border-border-main bg-bg-alt rounded-3xl hover:border-primary transition-colors duration-500 group">
+                  <div className="text-5xl md:text-6xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
+                    {stat.number}
+                  </div>
+                  <div className="text-text-muted font-medium text-sm tracking-wide uppercase">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
