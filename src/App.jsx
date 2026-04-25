@@ -8,21 +8,26 @@ import Skills from './sections/Skills';
 import Experience from './sections/Experience';
 import Projects from './sections/Projects';
 import Contact from './sections/Contact';
+import ContactPopup from './components/ContactPopup';
+import { PopupProvider } from './context/PopupContext';
 
 function App() {
   return (
-    <div className="bg-bg-main text-text-main font-body selection:bg-primary selection:text-white overflow-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <PopupProvider>
+      <div className="bg-bg-main text-text-main font-body selection:bg-primary selection:text-white overflow-hidden relative">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Contact />
+        </main>
+        <Footer />
+        <ContactPopup />
+      </div>
+    </PopupProvider>
   );
 }
 

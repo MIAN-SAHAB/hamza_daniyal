@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { usePopup } from '../context/PopupContext';
 
 const Navbar = () => {
+  const { openPopup } = usePopup();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,9 +47,12 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:block">
-          <a href="#contact" className="px-6 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary-light transition-colors text-sm">
+          <button
+            onClick={openPopup}
+            className="cursor-pointer px-6 py-2.5 bg-primary text-white rounded-full font-medium hover:bg-primary-light transition-colors text-sm"
+          >
             Let's Talk
-          </a>
+          </button>
         </div>
 
         {/* Mobile Hamburger */}
